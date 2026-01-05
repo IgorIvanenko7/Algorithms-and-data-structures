@@ -15,9 +15,8 @@ public class QuickSort {
         System.out.println("Unsorted Array: " + Arrays.toString(baseArray));
     }
 
-
     // Метод быстрой сортировки
-    private void quickSort(int[] arr, int l, int h) {
+    public void quickSort(int[] arr, int l, int h) {
         if (arr == null || arr.length == 0)
             return;
 
@@ -51,8 +50,8 @@ public class QuickSort {
         }
     }
 
-    // Переставление элементов в рамках каждой партиции (подмассива)
-    private static int partition(int[] arr, int low, int high) {
+    // Переставление элементов меньше опорного в рамках каждой партиции (подмассива)
+    public static int partition(int[] arr, int low, int high) {
         /* В качестве опорного элемента всегда выбирается последний элемент ->
         схема разделения Ломуто
         */
