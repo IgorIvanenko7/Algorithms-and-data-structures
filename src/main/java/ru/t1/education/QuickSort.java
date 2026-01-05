@@ -5,17 +5,20 @@ import java.util.Stack;
 
 public class QuickSort {
 
-    // Итеративная реализация алгоритма быстрой сортировки
     public static void main(String[] args) {
         int[] baseArray = {10, 7, 3, 8, 9, 1, 5};
 
         System.out.println("Unsorted Array: " + Arrays.toString(baseArray));
         var quickSort = new QuickSort();
         quickSort.quickSort(baseArray, 0, baseArray.length - 1);
-        System.out.println("Unsorted Array: " + Arrays.toString(baseArray));
+        System.out.println("Sorted Array: " + Arrays.toString(baseArray));
     }
 
-    // Метод быстрой сортировки
+    /**
+     * Итеративная реализация алгоритма быстрой сортировки.
+     * Использует стек для хранения диапазонов подмассивов
+     * вместо рекурсивных вызовов.
+     */
     public void quickSort(int[] arr, int l, int h) {
         if (arr == null || arr.length == 0)
             return;
@@ -23,6 +26,7 @@ public class QuickSort {
         if (l >= h)
             return;
 
+        // Стек хранит пары индексов (левая и правая границы подмассива)
         Stack<Integer> stack = new Stack<>();
         stack.push(l);
         stack.push(h);
@@ -31,18 +35,21 @@ public class QuickSort {
             h = stack.pop();
             l = stack.pop();
 
+            // Разбиение подмассива и получение индекса опорного элемента
             int pivotIndex = partition(arr, l, h);
 
-            /* Если левая часть подмассива полностью переставленна
-            тогда формируем (помещаем в стек новую границу диапазона)
-            */
+            /*
+             * Если слева от опорного элемента есть элементы,
+             * добавляем левый подмассив в стек
+             */
             if (pivotIndex - 1 > l) {
                 stack.push(l);
                 stack.push(pivotIndex - 1);
             }
-            /* Если индекс перестановки не достиг максимальной границы массива
-            тогда формируем (помещаем в стек правую границу нового диапазона)
-            */
+            /*
+             * Если справа от опорного элемента есть элементы,
+             * добавляем правый подмассив в стек
+             */
             if (pivotIndex + 1 < h) {
                 stack.push(pivotIndex + 1);
                 stack.push(h);
@@ -50,7 +57,15 @@ public class QuickSort {
         }
     }
 
-    // Переставление элементов меньше опорного в рамках каждой партиции (подмассива)
+    /**
+     * Разбиение массива по схеме Ломуто.
+     * В качестве опорного элемента выбирается последний элемент подмассива.
+     *
+     * Все элементы <= pivot перемещаются в левую часть,
+     * элементы > pivot — в правую.
+     *
+     * return окончательный индекс опорного элемента
+     */
     public static int partition(int[] arr, int low, int high) {
         /* В качестве опорного элемента всегда выбирается последний элемент ->
         схема разделения Ломуто
@@ -66,7 +81,7 @@ public class QuickSort {
                 i++;
             }
         }
-
+        // Помещаем опорный элемент на его окончательную позицию
         int temp = arr[i];
         arr[i] = arr[high];
         arr[high] = temp;
