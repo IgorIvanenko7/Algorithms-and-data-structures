@@ -14,7 +14,7 @@ public class MatrixToListEdgesTest {
      *  Колличество !null элементов матрицы =  Колличество ребер в списке
      */
     @Test()
-    public void countEdgesOrientTest() {
+    public void countEdgesNotOrientTest() {
         var countEdges = Arrays.stream(matrixSourceGraph)
                 .flatMapToInt(Arrays::stream)
                 .filter(item -> item > 0)
@@ -29,7 +29,7 @@ public class MatrixToListEdgesTest {
      *  Колличество !null элементов матрицы =  Колличество ребер в списке
      */
     @Test()
-    public void countEdgesNotOrientTest() {
+    public void countEdgesOrientTest() {
         var countEdges = Arrays.stream(matrixSourceGraph)
                 .flatMapToInt(Arrays::stream)
                 .filter(item -> item > 0)
