@@ -17,7 +17,7 @@ public class MatrixToListEdgesTest {
     public void countEdgesNotOrientTest() {
         var countEdges = Arrays.stream(matrixSourceGraph)
                 .flatMapToInt(Arrays::stream)
-                .filter(item -> item > 0)
+                .filter(item -> item != 0)
                 .count();
         var sizeOrient = matrixToEdgeList(matrixSourceGraph, true).size();
         assertEquals(countEdges, sizeOrient,
@@ -32,7 +32,7 @@ public class MatrixToListEdgesTest {
     public void countEdgesOrientTest() {
         var countEdges = Arrays.stream(matrixSourceGraph)
                 .flatMapToInt(Arrays::stream)
-                .filter(item -> item > 0)
+                .filter(item -> item != 0)
                 .count();
         var sizeOrient = matrixToEdgeList(matrixSourceGraph, false).size();
         assertEquals(countEdges/2, sizeOrient,
