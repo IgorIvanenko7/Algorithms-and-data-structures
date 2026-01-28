@@ -18,23 +18,23 @@ public class MatrixToListEdges {
     };
 
     /**
-     *  V1. Выводим список ребер для неориентированного графа
-     *  V2. Выводим список ребер для ориентированного графа
+     *  V1. Выводим список ребер для ориентированного графа
+     *  V2. Выводим список ребер для неориентированного графа
      *     (ребро один раз -> «верхний треугольник матрицы»)
      */
     public static void main(String[] args) {
 
-        // V1. неориентированный граф
+        // V1. ориентированный граф
         var listEdgesNotOrient = matrixToEdgeList(matrixSourceGraph, true);
         printEdgeList(listEdgesNotOrient);
 
-        // V2. ориентированный граф (ребро один раз -> «верхний треугольник матрицы»)
+        // V2. неориентированный граф (ребро один раз -> «верхний треугольник матрицы»)
         var listEdgesOrient = matrixToEdgeList(matrixSourceGraph, false);
         printEdgeList(listEdgesOrient);
     }
 
     /**
-     *  Метод конверта матрицы в список для неориентированного/ориентированного графа
+     *  Метод конверта матрицы в список для ориентированного/неориентированного графа
      */
     static List<Edge> matrixToEdgeList(int[][] matrix, boolean typeConvert) {
         List<Edge> edges = new ArrayList<>();

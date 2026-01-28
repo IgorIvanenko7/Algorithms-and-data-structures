@@ -10,11 +10,11 @@ import static ru.t1.education.MatrixToListEdges.matrixToEdgeList;
 public class MatrixToListEdgesTest {
 
     /**
-     *  Тестовый метод проверки конверта матрицы в список ребер для неориентированного графа
+     *  Тестовый метод проверки конверта матрицы в список ребер для ориентированного графа
      *  Количество !null элементов матрицы =  Количество ребер в списке
      */
     @Test()
-    public void countEdgesNotOrientTest() {
+    public void countEdgesOrientTest() {
         var countEdges = Arrays.stream(matrixSourceGraph)
                 .flatMapToInt(Arrays::stream)
                 .filter(item -> item != 0)
@@ -25,11 +25,11 @@ public class MatrixToListEdgesTest {
     }
 
     /**
-     *  Тестовый метод проверки конверта матрицы в список ребер для ориентированного графа
+     *  Тестовый метод проверки конверта матрицы в список ребер для неориентированного графа
      *  (Количество !null элементов матрицы)/2 =  Количество ребер в списке
      */
     @Test()
-    public void countEdgesOrientTest() {
+    public void countEdgesNotOrientTest() {
         var countEdges = Arrays.stream(matrixSourceGraph)
                 .flatMapToInt(Arrays::stream)
                 .filter(item -> item != 0)
