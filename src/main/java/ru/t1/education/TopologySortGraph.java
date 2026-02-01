@@ -9,7 +9,7 @@ public class TopologySortGraph {
      *  показывает связь вершин и направление связи ("1")
      */
     static String[] name = {"A", "B", "C", "D"};
-    static int[][] matrixSourceGraph = {
+    static int[][] matrixSourceTopologyGraph = {
             {0, 1, 1, 0}, // A -> B, A -> C
             {0, 0, 0, 1}, // B -> D
             {0, 0, 0, 1}, // C -> D
@@ -18,7 +18,7 @@ public class TopologySortGraph {
 
     public static void main(String[] args) {
         // Стартовое состояние каждой вершины
-        int n = matrixSourceGraph.length;
+        int n = matrixSourceTopologyGraph.length;
         statePoint[] stateP = new statePoint[n];
         Arrays.fill(stateP, statePoint.White);
         LinkedList<Integer> result = new LinkedList<>();
@@ -28,7 +28,7 @@ public class TopologySortGraph {
 
             if (stateP[i] == statePoint.White) {
                 // Обработка "White" вершины
-                if(! dfs(i, matrixSourceGraph, stateP, result)) {
+                if(! dfs(i, matrixSourceTopologyGraph, stateP, result)) {
                     throw new RuntimeException(" В графе обнаружен Цикл");
                 }
             }
