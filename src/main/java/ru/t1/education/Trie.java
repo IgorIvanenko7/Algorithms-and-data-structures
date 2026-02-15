@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BasePrefixTrie {
+public class Trie {
     /**
      *  Три строки для префиксного дерева
      */
