@@ -35,7 +35,7 @@ public class FileGroupBy {
 
 class UtillClass {
     /**
-     *  Считываение содержимого файла в ArrayList
+     *  Считывание содержимого файла в ArrayList
      */
     public List<String> getListFromFile(String path) {
         var listRec = new ArrayList<String>();
@@ -51,7 +51,7 @@ class UtillClass {
     }
 
     /**
-     *  Приведение имени к нормальному виду: Первый символ в верхнем регистре, остальные в нижнем
+     *  Приведение имени к заданному формату: Первый символ в верхнем регистре, остальные в нижнем
      */
     Function<String, String> formatName = (inName) ->
             inName.substring(0, 1).toUpperCase() + inName.substring(1).toLowerCase();
