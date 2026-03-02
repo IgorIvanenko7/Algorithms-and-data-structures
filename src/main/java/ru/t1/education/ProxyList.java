@@ -11,7 +11,8 @@ public class ProxyList {
 
         List<Integer> integerList = new ArrayList<>(List.of(1,2,3,4,5));
         CountingList countingList = new CountingList(integerList);
-        integerList = (List<Integer>) Proxy.newProxyInstance(integerList.getClass().getClassLoader(),
+        integerList = (List<Integer>) Proxy.newProxyInstance(
+                integerList.getClass().getClassLoader(),
                 integerList.getClass().getInterfaces(),
                 countingList);
         test(integerList);
@@ -38,12 +39,17 @@ class CountingList implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        if (method.getName().contains("add")) {
-            System.out.println("Action: Добавление элемента: " + args[0].toString());
-            countAdd ++;
-        } else if (method.getName().contains("remove")) {
-            System.out.println("Action: Удаление элемента с индексом: " + args[0].toString());
-            removeItem ++;
+
+        switch (method.getName()) {
+            case String meth when meth.contains("add") -> {
+                System.out.println("Action: Добавление элемента: " + args[0]);
+                countAdd++;
+            }
+            case String meth when meth.contains("remove") -> {
+                System.out.println("Action: Удаление элемента с индексом: " + args[0]);
+                removeItem++;
+            }
+            default -> System.out.println("Action: Не логируемый метод" + args[0]);
         }
         return method.invoke(list, args);
     }
